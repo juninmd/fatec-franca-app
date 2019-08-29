@@ -1,0 +1,25 @@
+<ion-content color="primary">
+  <form #form="ngForm" (ngSubmit)="login(form)">
+    <ion-grid>
+      <ion-row color="primary" justify-content-center>
+        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+          <div text-center>
+            <h3>Fatec Franca</h3>
+          </div>
+          <div padding>
+            <ion-item>
+              <ion-input name="login" type="text" placeholder="Sua identificação" ngModel required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input name="password" type="password" placeholder="Sua senha" ngModel required></ion-input>
+            </ion-item>
+          </div>
+          <div padding>
+            <ion-button color='medium' size="large" type="submit" [disabled]="form.invalid" expand="block">Login
+            </ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>
