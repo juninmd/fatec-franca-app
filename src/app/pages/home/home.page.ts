@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FatecFrancaApiService } from 'src/app/services/fatec-franca-api.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePage implements OnInit {
 
-  constructor() { }
+  constructor(private fatecFrancaApiService: FatecFrancaApiService, private nav: NavController) { }
 
-  ngOnInit() {
+  private schedule = {};
+
+  async ngOnInit() {
+    const { data: { schedules } } = await this.fatecFrancaApiService.getSchedules();
+
+    const toDay = new Date().getDay();
+    this.schedule = schedules.find((q) => q.weekday === toDay);
   }
 
 }
