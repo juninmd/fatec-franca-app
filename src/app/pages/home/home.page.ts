@@ -11,7 +11,7 @@ export class HomePage implements OnInit {
 
   constructor(private fatecFrancaApiService: FatecFrancaApiService, private nav: NavController) { }
 
-  private schedule = {};
+  schedule: any = {};
 
   async ngOnInit() {
     const { data: { schedules } } = await this.fatecFrancaApiService.getSchedules();
