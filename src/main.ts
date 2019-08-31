@@ -4,9 +4,12 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app/core/app.module';
 import { environment } from './environments/environment';
 
+import 'moment/locale/pt-br';
+
 if (environment.production) {
   enableProdMode();
 }
 
-platformBrowserDynamic().bootstrapModule(AppModule)
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
   .catch(err => console.log(err));

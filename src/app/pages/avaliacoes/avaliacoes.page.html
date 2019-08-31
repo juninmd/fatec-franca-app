@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Avaliações</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let partialGrade of partialGrades; index as i">
+      <ion-card color="primary">
+        <ion-card-header>
+          {{ partialGrade.discipline.name }}
+        </ion-card-header>
+        <ion-card-content>
+          <p>Frequência: {{ partialGrade.discipline.frequency }}</p>
+          <p>Estado: {{ partialGrade.discipline.state }}</p>
+
+          <div *ngFor="let evaluation of partialGrade.evaluations; index as a">
+            <p>Avaliação: {{ evaluation.title }}</p>
+            <p>Descrição: {{ evaluation.description }}</p>
+            <p>Peso: {{ evaluation.weight }}</p>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </ion-item>
+  </ion-list>
+</ion-content>

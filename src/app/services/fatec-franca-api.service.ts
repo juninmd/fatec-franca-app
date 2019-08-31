@@ -6,12 +6,11 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class FatecFrancaApiService {
-
   constructor() {
     const auth = localStorage.getItem('cookie');
 
     axios.defaults.headers = {
-      authorization: auth,
+      authorization: auth
     };
 
     axios.defaults.baseURL = environment.fatecApi.baseUrl;
@@ -54,8 +53,7 @@ export class FatecFrancaApiService {
     return axios.get('partialgrades');
   }
 
-  async getEnrolledDisciplines() {
+  async getDisciplines() {
     return axios.get('disciplines');
   }
-
 }

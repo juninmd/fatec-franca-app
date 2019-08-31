@@ -1,34 +1,35 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>Home</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{ weekday }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
-
-
   <ion-list>
-    <ion-list-header>{{schedule.weekday}} | Hoje você tem as seguintes aulas:</ion-list-header>
-    <ion-item *ngFor="let period of schedule.periods; index as i;">
-      <ion-card color='primary'>
+    <ion-item *ngFor="let period of schedule.periods; index as i">
+      <ion-card color="primary">
         <ion-card-header>
-          <ion-item color='primary'>
-            <ion-icon name="book" slot="start"></ion-icon>
-            <p>{{period.discipline.name}}</p>
-          </ion-item>
+          {{ period.discipline.name }}
         </ion-card-header>
         <ion-card-content>
-          <p>Professor(a): {{period.discipline.teacherName}}</p>
-          <p>Código: {{period.discipline.code}}</p>
-          <p>{{period.discipline.classRoom}}</p>
+          <p>Professor(a): {{ period.discipline.teacherName }}</p>
+          <p>Código: {{ period.discipline.code }}</p>
         </ion-card-content>
         <ion-item>
-          <ion-button slot="start"><ion-icon name="clock"></ion-icon> {{period.startAt | date:'HH:mm'}} - {{period.endAt | date:'HH:mm'}}</ion-button>
-          <ion-button fill="outline" slot="end">Material</ion-button>
+          <ion-button slot="start">
+            <ion-icon name="clock" slot="start"></ion-icon>
+            {{ period.startAt | date: 'HH:mm' }} -
+            {{ period.endAt | date: 'HH:mm' }}
+          </ion-button>
+          <ion-button fill="outline" slot="end">
+            <ion-icon name="book" slot="start"></ion-icon>
+            Material
+          </ion-button>
         </ion-item>
       </ion-card>
     </ion-item>
   </ion-list>
-
 </ion-content>
