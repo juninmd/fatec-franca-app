@@ -5,6 +5,8 @@
   "files.exclude": {
     "**/.git": true,
     "**/.DS_Store": true,
+    "node_modules": true,
+    "www": true,
     "**/*.js": {
       "when": "$(basename).ts"
     },
