@@ -19,11 +19,14 @@ export class LoginPage implements OnInit {
   }
 
   async login(form: NgForm) {
-    const response = await this.fatecFrancaApiService.login(form.value);
+    try {
+      const response = await this.fatecFrancaApiService.login(form.value);
 
-    localStorage.setItem('cookie', response.data.token);
+      localStorage.setItem('cookie', response.data.token);
 
-    this.nav.navigateRoot('/home');
+      this.nav.navigateRoot('/home');
+    } catch (error) {
+      throw error;
+    }
   }
-
 }
