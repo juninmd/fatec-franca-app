@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import axios from 'axios';
-import { environment } from '../../environments/environment';
 import { LoadingController, AlertController, NavController } from '@ionic/angular';
 
 @Injectable({
@@ -12,15 +11,6 @@ export class FatecFrancaApiService {
     public alertController: AlertController,
     // tslint:disable-next-line: align
     public navController: NavController) {
-
-    const auth = localStorage.getItem('cookie');
-
-    axios.defaults.headers = {
-      authorization: auth
-    };
-
-    axios.defaults.baseURL = environment.fatecApi.baseUrl;
-    axios.defaults.method = 'get';
 
 
     this.interceptor();

@@ -6,9 +6,22 @@ import { environment } from './environments/environment';
 
 import 'moment/locale/pt-br';
 
+import axios from 'axios';
+
 if (environment.production) {
   enableProdMode();
 }
+
+
+const auth = localStorage.getItem('token');
+
+axios.defaults.headers = {
+  authorization: auth
+};
+
+axios.defaults.baseURL = environment.fatecApi.baseUrl;
+axios.defaults.method = 'get';
+
 
 platformBrowserDynamic()
   .bootstrapModule(AppModule)

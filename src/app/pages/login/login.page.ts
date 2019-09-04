@@ -22,7 +22,7 @@ export class LoginPage implements OnInit {
     try {
       const response = await this.fatecFrancaApiService.login(form.value);
 
-      localStorage.setItem('cookie', response.data.token);
+      localStorage.setItem('token', response.data.token);
 
       this.nav.navigateRoot('/home');
     } catch (error) {
