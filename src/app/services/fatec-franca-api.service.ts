@@ -1,107 +1,50 @@
 import { Injectable } from '@angular/core';
-import axios from 'axios';
-import { LoadingController, AlertController, NavController } from '@ionic/angular';
+import Axios from '../../utils/request.util';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FatecFrancaApiService {
-  constructor(public loadingController: LoadingController,
-    // tslint:disable-next-line: align
-    public alertController: AlertController,
-    // tslint:disable-next-line: align
-    public navController: NavController) {
-
-
-    this.interceptor();
-  }
-
-  loader: HTMLIonLoadingElement;
-
-  public async showPreloader() {
-    this.loader = await this.loadingController.create({
-      message: 'Carregando...',
-      spinner: 'crescent'
-    });
-    await this.loader.present();
-  }
-
-  public async hidePreloader() {
-    await this.loader.dismiss();
-  }
-
-  private async interceptor() {
-
-    axios.interceptors.request.use(async (config) => {
-      await this.showPreloader();
-      return config;
-    }, async (error) => {
-      await this.hidePreloader();
-      return Promise.reject(error);
-    });
-
-    axios.interceptors.response.use(async (response) => {
-      await this.hidePreloader();
-      return response;
-    }, async (error) => {
-      // tslint:disable-next-line: no-debugger
-      await this.hidePreloader();
-
-      if (error.response.status === 401) {
-        const alert = await this.alertController.create({
-          header: 'Sua sessão expirou!',
-          subHeader: 'Precisamos fazer um novo login',
-          message: 'Vamos te redirecionar...',
-          buttons: ['OK']
-        });
-
-        await alert.present();
-
-        await alert.onDidDismiss();
-        this.navController.navigateRoot('login');
-      }
-
-      return Promise.reject(error);
-    });
+  constructor(private axios: Axios) {
   }
 
   async login(params: any) {
-    return axios.get('login', { params });
+    return this.axios.request({ params, url: 'login' });
   }
 
   async getName() {
-    return axios.get('name');
+    return this.axios.request({ url: 'name' });
   }
 
   async getProfile() {
-    return axios.get('profile');
+    return this.axios.request({ url: 'profile' });
   }
 
   async getAcademicCalendar() {
-    return axios.get('academic-calendar');
+    return this.axios.request({ url: 'academic-calendar' });
   }
 
   async getSchoolGrade() {
-    return axios.get('school-grade');
+    return this.axios.request({ url: 'school-grade' });
   }
 
   async getHistory() {
-    return axios.get('history');
+    return this.axios.request({ url: 'history' });
   }
 
   async getSchedules() {
-    return axios.get('schedules');
+    return this.axios.request({ url: 'schedules' });
   }
 
   async getRegisteredEmails() {
-    return axios.get('emails');
+    return this.axios.request({ url: 'emails' });
   }
 
   async getPartialGrades() {
-    return axios.get('partialgrades');
+    return this.axios.request({ url: 'partialgrades' });
   }
 
   async getDisciplines() {
-    return axios.get('disciplines');
+    return this.axios.request({ url: 'disciplines' });
   }
 }
