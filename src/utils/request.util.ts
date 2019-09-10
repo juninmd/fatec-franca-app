@@ -1,7 +1,12 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import { isLoggedIn, getAuth } from './auth.util';
 import { LoadingController, AlertController, NavController } from '@ionic/angular';
+import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
+@Injectable({
+  providedIn: 'root'
+})
 export default class RequestUtil {
 
   constructor(public loadingController: LoadingController,
@@ -17,27 +22,31 @@ export default class RequestUtil {
    * Método responsável por centralizar todos os requests.
    * @param axiosConfig Param
    */
-  async request(axiosConfig: AxiosRequestConfig): Promise<any> {
+  async request(axiosConfig: AxiosRequestConfig & { validate?: boolean }): Promise<any> {
     try {
-
+      axiosConfig.validate = axiosConfig.validate === undefined ? true : false;
+      axiosConfig.baseURL = environment.fatecApi.baseUrl;
       axiosConfig.headers = isLoggedIn() ? { Authorization: getAuth() } : {};
       axiosConfig.method = axiosConfig.method || 'get';
-      this.showPreloader();
+      await this.showPreloader();
       const response = await (axios.request(axiosConfig));
-      return response.data;
+      await this.hidePreloader();
+      return response;
     } catch (error) {
+      await this.hidePreloader();
 
-      if (error.response.status === 500) {
-        await this.responseInternalError();
-      }
+      if (axiosConfig.validate) {
 
-      if (error.response.status === 401) {
-        await this.responseNotAuthorized();
+        if (error.response.status === 500) {
+          await this.responseInternalError();
+        }
+
+        if (error.response.status === 401) {
+          await this.responseNotAuthorized();
+        }
       }
 
       throw error;
-    } finally {
-      await this.hidePreloader();
     }
   }
 
@@ -47,6 +56,7 @@ export default class RequestUtil {
       message: 'Carregando...',
       spinner: 'crescent'
     });
+
     await this.loader.present();
   }
 
@@ -56,9 +66,8 @@ export default class RequestUtil {
 
   private async responseInternalError() {
     const alert = await this.alertController.create({
-      header: 'Sua sessão expirou!',
-      subHeader: 'Precisamos fazer um novo login',
-      message: 'Vamos te redirecionar...',
+      header: 'Falha no sistema!',
+      message: 'Ocorreu um erro inesperado...',
       buttons: ['OK']
     });
 

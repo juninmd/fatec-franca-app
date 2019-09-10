@@ -1,27 +1,25 @@
-import { decode } from 'jsonwebtoken';
-
 interface UserData {
   name: string;
   login: string;
 }
 
 export const isLoggedIn = () => {
-  const user = localStorage.get('cookie');
+  const user = localStorage.getItem('token');
   return user !== null;
 };
 
 export const logOff = () => {
-  localStorage.remove('cookie');
+  localStorage.remove('token');
 };
 
 export const getUser = (): UserData => {
-  const user = localStorage.get('cookie');
+  const user = localStorage.getItem('token');
   if (user === null) {
     logOff();
   }
 
   try {
-    return decode(user) as UserData;
+    return user as unknown as UserData;
   } catch (error) {
     logOff();
     throw error;
@@ -29,8 +27,8 @@ export const getUser = (): UserData => {
 };
 
 
-export const getAuth = (): UserData => {
-  const user = localStorage.get('cookie');
+export const getAuth = (): string => {
+  const user = localStorage.getItem('token');
   if (user === null) {
     logOff();
   }
@@ -49,5 +47,5 @@ export const getFirstName = (): string => {
 };
 
 export const setUser = (user: string) => {
-  localStorage.set('cookie', user);
+  localStorage.set('token', user);
 };

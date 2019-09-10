@@ -1,21 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { FatecFrancaApiService } from 'src/app/services/fatec-franca-api.service';
 import { NgForm } from '@angular/forms';
-import { NavController } from '@ionic/angular';
+import { NavController, AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage implements OnInit {
+export class LoginPage {
 
-  constructor(private fatecFrancaApiService: FatecFrancaApiService, private nav: NavController) {
-  }
-
-
-  ngOnInit() {
-    (window as any).global = window;
+  constructor(private fatecFrancaApiService: FatecFrancaApiService,
+    // tslint:disable-next-line: align
+    private nav: NavController,
+    // tslint:disable-next-line: align
+    public alertController: AlertController) {
   }
 
   async login(form: NgForm) {
@@ -26,6 +25,15 @@ export class LoginPage implements OnInit {
 
       this.nav.navigateRoot('/home');
     } catch (error) {
+
+      const alert = await this.alertController.create({
+        header: 'Não autorizado',
+        message: 'Usuário/Senha Inválido!',
+        buttons: ['OK']
+      });
+
+      await alert.present();
+      await alert.onDidDismiss();
       throw error;
     }
   }

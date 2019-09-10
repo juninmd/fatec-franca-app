@@ -9,7 +9,7 @@ export class FatecFrancaApiService {
   }
 
   async login(params: any) {
-    return this.axios.request({ params, url: 'login' });
+    return this.axios.request({ params, url: 'login', validate: false });
   }
 
   async getName() {
