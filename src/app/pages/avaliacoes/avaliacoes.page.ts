@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FatecFrancaApiService } from 'src/app/services/fatec-franca-api.service';
 import { NavController } from '@ionic/angular';
-import * as moment from 'moment';
 
 @Component({
   selector: 'app-avaliacoes',
@@ -9,7 +8,7 @@ import * as moment from 'moment';
   styleUrls: ['./avaliacoes.page.scss']
 })
 export class AvaliacoesPage implements OnInit {
-  constructor(private fatecFrancaApiService: FatecFrancaApiService, private nav: NavController) {}
+  constructor(private fatecFrancaApiService: FatecFrancaApiService, private nav: NavController) { }
 
   partialGrades: any = [];
 
