@@ -9,9 +9,11 @@ import * as moment from 'moment';
   styleUrls: ['./home.page.scss']
 })
 export class HomePage implements OnInit {
-  constructor(private fatecFrancaApiService: FatecFrancaApiService, private nav: NavController) {}
+  constructor(private fatecFrancaApiService: FatecFrancaApiService, private nav: NavController) { }
 
-  schedule: any = {};
+  schedulesToday: any = {};
+  schedules: any = [];
+  tab = 1;
   weekday = moment().format('dddd');
 
   async ngOnInit() {
@@ -19,7 +21,18 @@ export class HomePage implements OnInit {
       data: { schedules }
     } = await this.fatecFrancaApiService.getSchedules();
 
+    const days = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
+
     const toDay = new Date().getDay();
-    this.schedule = schedules.find(q => q.weekday === toDay);
+    this.schedulesToday = schedules.find(q => q.weekday === toDay);
+    this.schedules = schedules.map((x) => {
+      x.isToday = x.weekday === toDay;
+      x.day = days[x.weekday];
+      return x;
+    });
+  }
+
+  handleTab(tab: number) {
+    this.tab = tab;
   }
 }
