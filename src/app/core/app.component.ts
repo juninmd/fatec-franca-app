@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { getFirstName, getPhoto } from 'src/utils/auth.util';
 import { MenuController } from '@ionic/angular';
 
@@ -7,12 +7,17 @@ import { MenuController } from '@ionic/angular';
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
-  name = getFirstName();
-  photo = getPhoto();
+  name = '';
+  photo = '';
 
   constructor(private menu: MenuController) {
+  }
+
+   async ngOnInit() {
+    this.name = getFirstName();
+    this.photo = getPhoto();
   }
 
   closeMenu() {
