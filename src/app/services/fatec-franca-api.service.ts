@@ -1,50 +1,48 @@
 import { Injectable } from '@angular/core';
-import Axios from '../../utils/request.util';
+import RequestUtil from '../../utils/request.util';
 
 @Injectable({
   providedIn: 'root'
 })
-export class FatecFrancaApiService {
-  constructor(private axios: Axios) {
-  }
+export class FatecFrancaApiService extends RequestUtil {
 
   async login(params: any) {
-    return this.axios.request({ params, url: 'login', validate: false });
+    return this.request({ params, url: 'login', validate: false });
   }
 
   async getName() {
-    return this.axios.request({ url: 'name' });
+    return this.request({ url: 'name' });
   }
 
   async getProfile() {
-    return this.axios.request({ url: 'profile' });
+    return this.request({ url: 'profile' });
   }
 
   async getAcademicCalendar() {
-    return this.axios.request({ url: 'academic-calendar' });
+    return this.request({ url: 'academic-calendar' });
   }
 
   async getSchoolGrade() {
-    return this.axios.request({ url: 'school-grade' });
+    return this.request({ url: 'school-grade' });
   }
 
   async getHistory() {
-    return this.axios.request({ url: 'history' });
+    return this.request({ url: 'history' });
   }
 
   async getSchedules() {
-    return this.axios.request({ url: 'schedules' });
+    return this.request({ url: 'schedules' });
   }
 
   async getRegisteredEmails() {
-    return this.axios.request({ url: 'emails' });
+    return this.request({ url: 'emails' });
   }
 
   async getPartialGrades() {
-    return this.axios.request({ url: 'partialgrades' });
+    return this.request({ url: 'partialgrades' });
   }
 
   async getDisciplines() {
-    return this.axios.request({ url: 'disciplines' });
+    return this.request({ url: 'disciplines' });
   }
 }
