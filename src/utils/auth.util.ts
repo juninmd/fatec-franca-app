@@ -1,51 +1,63 @@
 interface UserData {
-  name: string;
-  login: string;
+  cookie: string;
+  token: string;
+  profile: {
+    averageGrade: number;
+    birthday: Date;
+    code?: string;
+    course: string;
+    cpf: string;
+    email: string;
+    name: string;
+    period: string;
+    picture: string;
+    profile: any;
+    progress: number;
+    unit: string;
+  };
 }
 
 export const isLoggedIn = () => {
-  const user = localStorage.getItem('token');
+  const user = localStorage.getItem('session');
   return user !== null;
 };
 
 export const logOff = () => {
-  localStorage.remove('token');
+  localStorage.removeItem('session');
 };
 
-export const getUser = (): UserData => {
-  const user = localStorage.getItem('token');
-  if (user === null) {
-    logOff();
-  }
-
+export const getUser = () => {
+  const user = localStorage.getItem('session');
   try {
-    return user as unknown as UserData;
+    return (JSON.parse(user) as UserData).profile;
   } catch (error) {
-    logOff();
     throw error;
   }
 };
 
 
 export const getAuth = (): string => {
-  const user = localStorage.getItem('token');
-  if (user === null) {
-    logOff();
-  }
-
+  const user = localStorage.getItem('session');
   try {
-    return user;
+    return JSON.parse(user).token;
   } catch (error) {
-    logOff();
     throw error;
   }
 };
 
 export const getFirstName = (): string => {
-  const user = getUser().name.split(' ')[0];
-  return user.charAt(0).toUpperCase() + user.slice(1).toLowerCase();
+  try {
+    const user = getUser().name.split(' ')[0];
+    return user.charAt(0).toUpperCase() + user.slice(1).toLowerCase();
+  } catch (error) {
+    return '';
+  }
 };
 
-export const setUser = (user: string) => {
-  localStorage.set('token', user);
+export const getPhoto = (): string => {
+  try {
+    return getUser().picture;
+  } catch (error) {
+    return '';
+  }
 };

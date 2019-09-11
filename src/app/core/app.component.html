@@ -1,17 +1,27 @@
 <ion-app>
   <ion-menu side="start" contentId="menu-content">
     <ion-header>
-      <ion-toolbar color="dark">
-        <ion-title>Olá Pessoa</ion-title>
+      <ion-toolbar>
+
+        <ion-item color="dark">
+          <ion-avatar slot="start">
+            <img [src]="photo">
+          </ion-avatar>
+          <ion-title>{{name}}</ion-title>
+        </ion-item>
+
       </ion-toolbar>
     </ion-header>
-    <ion-content id="menu-content">
-      <ion-list>
-        <ion-button expand="block" fill="outline" [routerLink]="['/home']">Home</ion-button>
-        <ion-button expand="block" fill="outline" [routerLink]="['/grade']">Grade</ion-button>
-        <ion-button expand="block" fill="outline" [routerLink]="['/avaliacoes']">Avaliações</ion-button>
-        <ion-button expand="block" fill="outline" [routerLink]="['/em-curso']">Em Curso</ion-button>
-        <ion-button expand="block" fill="outline" [routerLink]="['/login']">Sair</ion-button>
+    <ion-content id="menu-content" color="dark">
+      <ion-list color="dark">
+        <ion-button (click)="closeMenu()" color="dark" expand="block" fill="outline" [routerLink]="['/home']">Home
+        </ion-button>
+        <ion-button (click)="closeMenu()" expand="block" fill="outline" [routerLink]="['/grade']">Grade</ion-button>
+        <ion-button (click)="closeMenu()" expand="block" fill="outline" [routerLink]="['/avaliacoes']">Avaliações
+        </ion-button>
+        <ion-button (click)="closeMenu()" expand="block" fill="outline" [routerLink]="['/em-curso']">Em Curso
+        </ion-button>
+        <ion-button (click)="closeMenu()" expand="block" fill="outline" [routerLink]="['/login']">Sair</ion-button>
       </ion-list>
     </ion-content>
   </ion-menu>
