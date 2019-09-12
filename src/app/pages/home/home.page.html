@@ -11,7 +11,7 @@
     <ion-tabs>
       <ion-tab-bar color="dark" slot="bottom">
         <ion-tab-button (click)="handleTab(1)">
-          <ion-icon name="information-circle"></ion-icon>
+          <ion-icon name="home"></ion-icon>
           <ion-label>Hoje</ion-label>
           <ion-badge>{{ schedulesToday?.periods?.length }}</ion-badge>
         </ion-tab-button>
@@ -29,7 +29,7 @@
 <ion-content color="dark" padding>
   <div *ngIf="tab === 1">
     <ion-title>{{ weekday }}</ion-title>
-    <ion-card *ngFor="let periodToday of schedulesToday.periods; index as i" button="true" color="tertiary">
+    <ion-card *ngFor="let periodToday of schedulesToday.periods; index as i" color="tertiary">
       <ion-card-header>
         {{ periodToday.discipline.name }}
       </ion-card-header>
@@ -54,13 +54,13 @@
     <div *ngFor="let schedule of schedules; index as s">
       <ion-title>{{schedule.day}}</ion-title>
 
-      <ion-card *ngIf="schedule.periods.length === 0" button="true" color="tertiary">
+      <ion-card *ngIf="schedule.periods.length === 0" color="tertiary">
         <ion-card-header>
           Não tem aula
         </ion-card-header>
       </ion-card>
 
-      <ion-card *ngFor="let period of schedule.periods; index as q" button="true" color="tertiary">
+      <ion-card *ngFor="let period of schedule.periods; index as q" color="tertiary">
         <ion-card-header>
           {{ period.discipline.name }}
         </ion-card-header>

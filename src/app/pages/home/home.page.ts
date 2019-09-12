@@ -21,7 +21,7 @@ export class HomePage implements OnInit {
       data: { schedules }
     } = await this.fatecFrancaApiService.getSchedules();
 
-    const days = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
+    const days = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
 
     const toDay = new Date().getDay();
     this.schedulesToday = schedules.find(q => q.weekday === toDay);
