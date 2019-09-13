@@ -7,15 +7,23 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content color="dark">
+<ion-content color="dark" padding>
   <ion-card color="tertiary" *ngFor="let discipline of disciplines; index as i">
     <ion-card-header>
       {{ discipline.name }}
     </ion-card-header>
     <ion-card-content>
       <p>Professor(a): {{ discipline.teacherName }}</p>
-      <p>Faltas: {{ discipline.absenses }}</p>
-      <p>Presenças: {{ discipline.presences }}</p>
     </ion-card-content>
+    <ion-item>
+      <ion-button color="tertiary" slot="start">
+        <ion-icon name="alert" slot="start"></ion-icon>
+        <p>Faltas: {{ discipline.absenses }}</p>
+      </ion-button>
+      <ion-button color="tertiary" slot="end">
+        <ion-icon name="person" slot="start"></ion-icon>
+        <p>Presenças: {{ discipline.presences }}</p>
+      </ion-button>
+    </ion-item>
   </ion-card>
 </ion-content>

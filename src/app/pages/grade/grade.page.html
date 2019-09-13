@@ -7,23 +7,54 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content color="dark">
+<ion-content color="dark" padding>
+
+
+  <ion-item color="dark">
+    <ion-button color="tertiary" slot="start">
+      <ion-icon name="alert" slot="start"></ion-icon>
+      <p>Aprovado em: {{ status.aprovado }}</p>
+    </ion-button>
+    <ion-button color="tertiary" slot="start">
+      <ion-icon name="alert" slot="start"></ion-icon>
+      <p>Cursando: {{ status.cursando }}</p>
+    </ion-button>
+    <ion-button color="tertiary" slot="start">
+      <ion-icon name="alert" slot="start"></ion-icon>
+      <p>Dispensado em: {{ status.dispensado }}</p>
+    </ion-button>
+  </ion-item>
+
   <div *ngFor="let semester of semesters; index as i">
     <ion-item color="dark">
       <ion-label>Semestre: {{ semester.number }}</ion-label>
     </ion-item>
 
-    <ion-card color="tertiary" *ngFor="let discipline of semester.disciplines; index as i">
+    <ion-card *ngFor="let discipline of semester.disciplines; index as i" [color]="discipline.color">
       <ion-card-header>
         {{ discipline.name }}
       </ion-card-header>
       <ion-card-content>
-        <p>Carga Horária: {{ discipline.classHours }}</p>
-        <p>Frequência: {{ discipline.frequency }}</p>
-        <p>Nota: {{ discipline.grade }}</p>
-        <p>Período: {{ discipline.period }}</p>
-        <p>Estado : {{ discipline.state }}</p>
+        <p>Estado: {{ discipline.status }}</p>
       </ion-card-content>
+      <ion-item>
+        <ion-button color="tertiary" slot="start">
+          <ion-icon name="alert" slot="start"></ion-icon>
+          <p>Frequência: {{ discipline.frequency }}</p>
+        </ion-button>
+        <ion-button color="tertiary" slot="start">
+          <ion-icon name="person" slot="start"></ion-icon>
+          <p>Carga Horária: {{ discipline.classHours }}</p>
+        </ion-button>
+        <ion-button color="tertiary" slot="end">
+          <ion-icon name="person" slot="start"></ion-icon>
+          <p>Período: {{ discipline.period }}</p>
+        </ion-button>
+        <ion-button color="tertiary" slot="end">
+          <ion-icon name="person" slot="start"></ion-icon>
+          <p>Nota: {{ discipline.grade }}</p>
+        </ion-button>
+      </ion-item>
     </ion-card>
   </div>
 </ion-content>

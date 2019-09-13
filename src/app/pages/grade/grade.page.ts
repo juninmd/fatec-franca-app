@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FatecFrancaApiService } from 'src/app/services/fatec-franca-api.service';
 import { NavController } from '@ionic/angular';
-import * as moment from 'moment';
 
 @Component({
   selector: 'app-grade',
@@ -9,15 +8,54 @@ import * as moment from 'moment';
   styleUrls: ['./grade.page.scss']
 })
 export class GradePage implements OnInit {
-  constructor(private fatecFrancaApiService: FatecFrancaApiService, private nav: NavController) {}
+  constructor(private fatecFrancaApiService: FatecFrancaApiService, private nav: NavController) { }
 
   semesters: any = [];
+  status: any = {
+    aprovado: 0,
+    cursando: 0,
+    reprovado: 0,
+    dispensado: 0
+  };
 
   async ngOnInit() {
     const {
       data: { schoolGrade }
     } = await this.fatecFrancaApiService.getSchoolGrade();
 
-    this.semesters = schoolGrade.semesters;
+    for (const semester of schoolGrade.semesters) {
+      for (const discipline of semester.disciplines) {
+
+        if (discipline.state === 'approved') {
+          this.status.aprovado += 1;
+        }
+
+        if (discipline.state === 'dismissed') {
+          this.status.dispensado += 1;
+        }
+
+        if (discipline.state === 'attending') {
+          this.status.cursando += 1;
+        }
+
+      }
+
+    }
+
+    this.semesters = schoolGrade.semesters.map((x) => {
+      x.disciplines = x.disciplines.map((d) => {
+        d.color = d.state === 'approved' ?
+          'success' : d.state === 'dismissed' ?
+            'success' : d.state === 'attending' ?
+              'tertiary' : 'danger';
+
+        d.status = d.state === 'approved' ?
+          'Aprovado' : d.state === 'dismissed' ?
+            'Dispensado' : d.state === 'attending' ?
+              'Cursando' : 'Reprovado';
+        return d;
+      });
+      return x;
+    });
   }
 }
