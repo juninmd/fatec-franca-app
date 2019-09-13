@@ -13,14 +13,14 @@
       {{ partialGrade.discipline.name }}
     </ion-card-header>
     <ion-card-content>
-      <p>Frequência: {{ partialGrade.discipline.frequency }}</p>
-      <p>Estado: {{ partialGrade.discipline.state }}</p>
 
-      <div *ngFor="let evaluation of partialGrade.evaluations; index as a">
-        <p>Avaliação: {{ evaluation.title }}</p>
-        <p>Descrição: {{ evaluation.description }}</p>
-        <p>Peso: {{ evaluation.weight }}</p>
-      </div>
+      <ion-list>
+        <ion-item *ngFor="let evaluation of partialGrade.evaluations; index as a">
+          <ion-title>{{ evaluation.title }}</ion-title>
+          <ion-label>Descrição: {{ evaluation.description }}</ion-label>
+          <ion-label>Peso: {{ evaluation.weight }}</ion-label>
+        </ion-item>
+      </ion-list>
     </ion-card-content>
   </ion-card>
 </ion-content>
