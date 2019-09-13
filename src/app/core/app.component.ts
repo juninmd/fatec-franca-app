@@ -15,12 +15,17 @@ export class AppComponent implements OnInit {
   constructor(private menu: MenuController) {
   }
 
-   async ngOnInit() {
+  async ngOnInit() {
     this.name = getFirstName();
     this.photo = getPhoto();
   }
 
   closeMenu() {
+    this.menu.close();
+  }
+
+  github() {
+    window.open('https://github.com/juninmd/fatec-franca-app', '_blank')
     this.menu.close();
   }
 

@@ -252,13 +252,6 @@
   dependencies:
     tslib "^1.9.0"
 
-"@auth0/angular-jwt@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@auth0/angular-jwt/-/angular-jwt-3.0.0.tgz#c484af3d6faadfa1b3b4beb0646b60a562ceed8e"
-  integrity sha512-Ky8hghnEx+CtCd097YXji08/LvLTG98IAEX/j1UgnutRDhQ31eczOohDn98v3i3MHNfLjfI3HdyxPK1Qc0IkZw==
-  dependencies:
-    url "^0.11.0"
-
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.5.5":
   version "7.5.5"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.5.5.tgz#bc0782f6d69f7b7d49531219699b988f669a8f9d"
@@ -347,27 +340,6 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@ionic-native/core@^5.0.0":
-  version "5.12.0"
-  resolved "https://registry.yarnpkg.com/@ionic-native/core/-/core-5.12.0.tgz#e10af3c3b6e558d7c629a46e3f75f28e52f67b83"
-  integrity sha512-sVhogeZJLyAjGmPc4J9tChrjIvHKqyeWOMYZLOLqgyarNMzUSGB/u2u2UGuASRqij3YgREdTvpG/vXQLhsI4zQ==
-  dependencies:
-    "@types/cordova" latest
-
-"@ionic-native/splash-screen@^5.0.0":
-  version "5.12.0"
-  resolved "https://registry.yarnpkg.com/@ionic-native/splash-screen/-/splash-screen-5.12.0.tgz#a5c7837f5bc52449a8faa2dcce94fa864733b0af"
-  integrity sha512-hItsj+9PFWrsojMr3tLAP/CVP9yVqauVLUw1SM1c2juyvS2I8e99xDx8jesLlRqPDshFBGQGgiWKJdI0n6l+PA==
-  dependencies:
-    "@types/cordova" latest
-
-"@ionic-native/status-bar@^5.0.0":
-  version "5.12.0"
-  resolved "https://registry.yarnpkg.com/@ionic-native/status-bar/-/status-bar-5.12.0.tgz#32a187f11ee8ced3c4295c04e3a412704f7bf18d"
-  integrity sha512-5l9dvqWE0qHcQzGU7RLA1vItCoh/Xvxf9GqCkXGbTG44jEIXasDquWyIU8BY7nkKyji3r/SyzEj7Pne+JT6WNw==
-  dependencies:
-    "@types/cordova" latest
-
 "@ionic/angular-toolkit@~2.0.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@ionic/angular-toolkit/-/angular-toolkit-2.0.0.tgz#2095f3b0ed731600fe590aa024682fdd532a4833"
@@ -449,11 +421,6 @@
   integrity sha1-7CMA++fX3d1+udOr+HmZlkyvzkY=
   dependencies:
     axios "*"
-
-"@types/cordova@latest":
-  version "0.0.34"
-  resolved "https://registry.yarnpkg.com/@types/cordova/-/cordova-0.0.34.tgz#ea7addf74ecec3d7629827a0c39e2c9addc73d04"
-  integrity sha1-6nrd907Ow9dimCegw54smt3HPQQ=
 
 "@types/events@*":
   version "3.0.0"

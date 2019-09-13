@@ -27,6 +27,11 @@ const routes: Routes = [
     path: 'grade',
     loadChildren: '../pages/grade/grade.module#GradePageModule',
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'util',
+    loadChildren: '../pages/utils/utils.module#UtilsPageModule',
+    canActivate: [AuthGuard]
   }];
 @NgModule({
   imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],

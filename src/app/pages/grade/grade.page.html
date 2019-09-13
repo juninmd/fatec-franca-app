@@ -7,8 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content color="dark" padding>
-
+<ion-content color="dark">
 
   <ion-item color="dark">
     <ion-button color="success" slot="start">
@@ -19,6 +18,9 @@
       <ion-icon name="alert" slot="start"></ion-icon>
       <p>Cursando: {{ status.cursando }}</p>
     </ion-button>
+  </ion-item>
+
+  <ion-item color="dark">
     <ion-button color="success" slot="start">
       <ion-icon name="alert" slot="start"></ion-icon>
       <p>Dispensado em: {{ status.dispensado }}</p>
@@ -38,21 +40,20 @@
         <p>Estado: {{ discipline.status }}</p>
       </ion-card-content>
       <ion-item>
-        <ion-button color="tertiary" slot="start">
-          <ion-icon name="alert" slot="start"></ion-icon>
-          <p>Frequência: {{ discipline.frequency }}</p>
+        <ion-button color="black">
+          <ion-label>Frequência: {{ discipline.frequency }}</ion-label>
         </ion-button>
-        <ion-button color="tertiary" slot="start">
-          <ion-icon name="person" slot="start"></ion-icon>
-          <p>Carga Horária: {{ discipline.classHours }}</p>
+        <ion-button color="black">
+          <ion-label>Carga Horária: {{ discipline.classHours }}</ion-label>
         </ion-button>
-        <ion-button color="tertiary" slot="end">
-          <ion-icon name="person" slot="start"></ion-icon>
-          <p>Período: {{ discipline.period }}</p>
+      </ion-item>
+
+      <ion-item>
+        <ion-button color="black">
+          <ion-label>Período: {{ discipline.period }}</ion-label>
         </ion-button>
-        <ion-button color="tertiary" slot="end">
-          <ion-icon name="person" slot="start"></ion-icon>
-          <p>Nota: {{ discipline.grade }}</p>
+        <ion-button color="black">
+          <ion-label>Nota: {{ discipline.grade }}</ion-label>
         </ion-button>
       </ion-item>
     </ion-card>

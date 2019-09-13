@@ -13,16 +13,16 @@
       </ion-toolbar>
     </ion-header>
     <ion-content id="menu-content" color="dark">
-      <ion-list color="dark">
-        <ion-button (click)="closeMenu()" color="dark" expand="block" fill="outline" [routerLink]="['/home']">Home
-        </ion-button>
-        <ion-button (click)="closeMenu()" expand="block" fill="outline" [routerLink]="['/grade']">Grade</ion-button>
-        <ion-button (click)="closeMenu()" expand="block" fill="outline" [routerLink]="['/avaliacoes']">Avaliações
-        </ion-button>
-        <ion-button (click)="closeMenu()" expand="block" fill="outline" [routerLink]="['/em-curso']">Em Curso
-        </ion-button>
-        <ion-button (click)="closeMenu()" expand="block" fill="outline" [routerLink]="['/login']">Sair</ion-button>
-      </ion-list>
+      <ion-button (click)="closeMenu()" color="tertiary" expand="block" [routerLink]="['/home']">Home
+      </ion-button>
+      <ion-button (click)="closeMenu()" color="tertiary" expand="block" [routerLink]="['/grade']">Grade</ion-button>
+      <ion-button (click)="closeMenu()" color="tertiary" expand="block" [routerLink]="['/avaliacoes']">Avaliações
+      </ion-button>
+      <ion-button (click)="closeMenu()" color="tertiary" expand="block" [routerLink]="['/em-curso']">Em Curso
+      </ion-button>
+      <ion-button (click)="closeMenu()" color="tertiary" expand="block" [routerLink]="['/util']">Utilidades</ion-button>
+      <ion-button (click)="github()" color="tertiary" expand="block">Contribua</ion-button>
+      <ion-button (click)="closeMenu()" color="tertiary" expand="block" [routerLink]="['/login']">Sair</ion-button>
     </ion-content>
   </ion-menu>
 

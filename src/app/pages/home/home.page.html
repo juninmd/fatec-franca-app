@@ -26,9 +26,18 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content color="dark" padding>
+<ion-content color="dark">
   <div *ngIf="tab === 1">
-    <ion-title>{{ weekday }}</ion-title>
+    <ion-item color="dark">
+      <ion-title>{{ weekday }}</ion-title>
+    </ion-item>
+
+    <ion-card *ngIf="schedulesToday?.periods?.length === 0" color="tertiary">
+      <ion-card-header>
+        Não tem aula
+      </ion-card-header>
+    </ion-card>
+
     <ion-card *ngFor="let periodToday of schedulesToday.periods; index as i" color="tertiary">
       <ion-card-header>
         {{ periodToday.discipline.name }}
@@ -52,8 +61,9 @@
 
   <div *ngIf="tab === 2">
     <div *ngFor="let schedule of schedules; index as s">
-      <ion-title>{{schedule.day}}</ion-title>
-
+      <ion-item color="dark">
+        <ion-title>{{ schedule.day }}</ion-title>
+      </ion-item>
       <ion-card *ngIf="schedule.periods.length === 0" color="tertiary">
         <ion-card-header>
           Não tem aula
