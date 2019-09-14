@@ -5,9 +5,9 @@
 
         <ion-item color="dark">
           <ion-avatar slot="start">
-            <img [src]="photo">
+            <img [src]="sessionService.getPhoto()">
           </ion-avatar>
-          <ion-title>{{name}}</ion-title>
+          <ion-title>{{sessionService.getFirstName()}}</ion-title>
         </ion-item>
 
       </ion-toolbar>

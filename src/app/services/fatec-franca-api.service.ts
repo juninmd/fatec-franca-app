@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import axios, { AxiosRequestConfig } from 'axios';
-import { isLoggedIn, getAuth } from '../../utils/auth.util';
 import { LoadingController, AlertController, NavController } from '@ionic/angular';
 import { environment } from 'src/environments/environment';
+import { SessionService } from './session.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,13 +13,14 @@ export class FatecFrancaApiService {
     // tslint:disable-next-line: align
     public alertController: AlertController,
     // tslint:disable-next-line: align
-    public navController: NavController) {
+    public navController: NavController,
+    public sessionService: SessionService) {
   }
 
   private loader: HTMLIonLoadingElement;
 
   async login(params: any) {
-    return this.request({ params, url: 'login', validate: false });
+    return this.request({ params, url: 'login', validate: false, disableLoader: true });
   }
 
   async getName() {
@@ -58,39 +59,52 @@ export class FatecFrancaApiService {
     return this.request({ url: 'disciplines' });
   }
 
-
   /**
    * Método responsável por centralizar todos os requests.
    * @param axiosConfig Param
    */
-  async request(axiosConfig: AxiosRequestConfig & { validate?: boolean }): Promise<any> {
+  async request(axiosConfig: AxiosRequestConfig & { validate?: boolean, disableLoader?: boolean }, retry = 0): Promise<any> {
     try {
       axiosConfig.validate = axiosConfig.validate === undefined ? true : false;
       axiosConfig.baseURL = environment.fatecApi.baseUrl;
-      axiosConfig.headers = isLoggedIn() ? { Authorization: getAuth() } : {};
+      axiosConfig.headers = this.sessionService.isLoggedIn() ? { Authorization: this.sessionService.getAuth() } : {};
       axiosConfig.method = axiosConfig.method || 'get';
-      await this.showPreloader();
+      if (axiosConfig.disableLoader) {
+        await this.showPreloader();
+      }
       const response = await (axios.request(axiosConfig));
-      await this.hidePreloader();
+      if (axiosConfig.disableLoader) {
+        await this.hidePreloader();
+      }
       return response;
     } catch (error) {
-      await this.hidePreloader();
+      if (axiosConfig.disableLoader) {
+        await this.hidePreloader();
+      }
 
       if (axiosConfig.validate) {
+        if (error.response) {
+          if (error.response.status === 500) {
+            await this.responseInternalError();
+          }
 
-        if (error.response.status === 500) {
-          await this.responseInternalError();
+          if (error.response.status === 401) {
+            if (retry >= 1 || localStorage.getItem('login') === null) {
+              return await this.responseNotAuthorized();
+            }
+
+            // Tenta renovar o login
+            const responseLogin = await this.login(JSON.parse(localStorage.getItem('login')));
+            localStorage.setItem('session', JSON.stringify(responseLogin.data));
+            return await this.request(axiosConfig, 1);
+          }
         }
 
-        if (error.response.status === 401) {
-          await this.responseNotAuthorized();
-        }
       }
 
       throw error;
     }
   }
-
 
   private async showPreloader() {
     this.loader = await this.loadingController.create({

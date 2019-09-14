@@ -22,6 +22,7 @@ export class LoginPage {
       const response = await this.fatecFrancaApiService.login(form.value);
 
       localStorage.setItem('session', JSON.stringify(response.data));
+      localStorage.setItem('login', JSON.stringify(form.value));
 
       this.nav.navigateRoot('/home');
     } catch (error) {
