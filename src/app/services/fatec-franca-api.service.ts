@@ -20,7 +20,7 @@ export class FatecFrancaApiService {
   private loader: HTMLIonLoadingElement;
 
   async login(params: any) {
-    return this.request({ params, url: 'login', validate: false, disableLoader: true });
+    return this.request({ params, url: 'login', validate: false });
   }
 
   async getName() {
@@ -63,24 +63,18 @@ export class FatecFrancaApiService {
    * Método responsável por centralizar todos os requests.
    * @param axiosConfig Param
    */
-  async request(axiosConfig: AxiosRequestConfig & { validate?: boolean, disableLoader?: boolean }, retry = 0): Promise<any> {
+  async request(axiosConfig: AxiosRequestConfig & { validate?: boolean }, retry = 0): Promise<any> {
     try {
       axiosConfig.validate = axiosConfig.validate === undefined ? true : false;
       axiosConfig.baseURL = environment.fatecApi.baseUrl;
       axiosConfig.headers = this.sessionService.isLoggedIn() ? { Authorization: this.sessionService.getAuth() } : {};
       axiosConfig.method = axiosConfig.method || 'get';
-      if (axiosConfig.disableLoader) {
-        await this.showPreloader();
-      }
+      await this.showPreloader();
       const response = await (axios.request(axiosConfig));
-      if (axiosConfig.disableLoader) {
-        await this.hidePreloader();
-      }
+      await this.hidePreloader();
       return response;
     } catch (error) {
-      if (axiosConfig.disableLoader) {
-        await this.hidePreloader();
-      }
+      await this.hidePreloader();
 
       if (axiosConfig.validate) {
         if (error.response) {
@@ -94,7 +88,7 @@ export class FatecFrancaApiService {
             }
 
             // Tenta renovar o login
-            const responseLogin = await this.login(JSON.parse(localStorage.getItem('login')));
+            const responseLogin = await this.login(JSON.parse(localStorage.getItem('login')), true);
             localStorage.setItem('session', JSON.stringify(responseLogin.data));
             return await this.request(axiosConfig, 1);
           }
@@ -107,16 +101,22 @@ export class FatecFrancaApiService {
   }
 
   private async showPreloader() {
-    this.loader = await this.loadingController.create({
-      message: 'Carregando...',
-      spinner: 'crescent'
-    });
+    try {
+      this.loader = await this.loadingController.create({
+        message: 'Carregando...',
+        spinner: 'crescent'
+      });
 
-    await this.loader.present();
+      await this.loader.present();
+    } catch {
+    }
   }
 
   private async hidePreloader() {
-    await this.loader.dismiss();
+    try {
+      await this.loader.dismiss();
+    } catch {
+    }
   }
 
   private async responseInternalError() {
