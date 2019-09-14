@@ -88,7 +88,7 @@ export class FatecFrancaApiService {
             }
 
             // Tenta renovar o login
-            const responseLogin = await this.login(JSON.parse(localStorage.getItem('login')), true);
+            const responseLogin = await this.login(JSON.parse(localStorage.getItem('login')));
             localStorage.setItem('session', JSON.stringify(responseLogin.data));
             return await this.request(axiosConfig, 1);
           }
