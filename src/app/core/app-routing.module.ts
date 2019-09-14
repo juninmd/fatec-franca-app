@@ -32,6 +32,11 @@ const routes: Routes = [
     path: 'util',
     loadChildren: '../pages/utils/utils.module#UtilsPageModule',
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'eventos',
+    loadChildren: '../pages/eventos/eventos.module#EventosPageModule',
+    canActivate: [AuthGuard]
   }];
 @NgModule({
   imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],

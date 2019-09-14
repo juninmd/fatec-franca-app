@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Eventos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="dark">
+
+  <div *ngFor="let month of academicCalendar.months; index as i">
+    <ion-item color="dark">
+      <ion-label>{{ month.name }}</ion-label>
+    </ion-item>
+
+    <ion-card *ngFor="let event of month.events; index as i" color='tertiary'>
+      <ion-card-header>
+        {{ event.name }}
+      </ion-card-header>
+      <ion-card-content>
+        <p>Descrição: {{ event.reason }}</p>
+      </ion-card-content>
+      <ion-item>
+        <ion-button color="black">
+          <ion-label>Data: {{ event.date | date: 'dd/MM/yyyy' }}</ion-label>
+        </ion-button>
+      </ion-item>
+
+    </ion-card>
+  </div>
+</ion-content>
