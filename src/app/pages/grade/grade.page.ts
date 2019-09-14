@@ -42,8 +42,8 @@ export class GradePage implements OnInit {
 
     }
 
-    this.semesters = schoolGrade.semesters.map((x) => {
-      x.disciplines = x.disciplines.map((d) => {
+    this.semesters = schoolGrade.semesters.map((x: any) => {
+      x.disciplines = x.disciplines.map((d: any) => {
         d.color = d.state === 'approved' ?
           'success' : d.state === 'dismissed' ?
             'success' : d.state === 'attending' ?

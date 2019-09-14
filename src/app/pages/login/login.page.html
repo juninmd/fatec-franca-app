@@ -7,22 +7,32 @@
             <ion-card-content>
               <div text-center>
                 <ion-img class="logo" src="assets/img/fatec.png"></ion-img>
-                <ion-note color="primary">Por favor, insira suas credências do SIGA</ion-note>
+                <ion-title color="tertiary">Franca</ion-title>
               </div>
               <div padding>
+                <ion-note>Informe suas credênciais do SIGA</ion-note>
                 <ion-item>
-                  <ion-input name="login" type="text" placeholder="Número R.G." ngModel required></ion-input>
+                  <ion-label position="floating">R.G.</ion-label>
+                  <ion-input name="login" type="text" placeholder="ex: 453664338SP" ngModel required></ion-input>
                 </ion-item>
                 <ion-item>
-                  <ion-input name="password" type="password" placeholder="Senha" ngModel required></ion-input>
+                  <ion-label position="floating">Senha</ion-label>
+                  <ion-input name="password" type="password" placeholder="ex: 123" ngModel required></ion-input>
                 </ion-item>
               </div>
               <div padding>
-                <ion-button color="success" size="medium" type="submit" [disabled]="form.invalid" expand="block">Login
+                <ion-button color="tertiary" size="medium" type="submit" [disabled]="form.invalid" expand="block">Login
+                </ion-button>
+                <ion-button color="dark" size="small" (click)="esqueceu()" expand="block">Esqueceu sua senha?
                 </ion-button>
               </div>
             </ion-card-content>
           </ion-card>
+          <ion-item color="dark">
+            <ion-buttons slot="end">
+              <ion-badge color="tertiary" size="small">Versão: {{version}}</ion-badge>
+            </ion-buttons>
+          </ion-item>
         </ion-col>
       </ion-row>
     </ion-grid>

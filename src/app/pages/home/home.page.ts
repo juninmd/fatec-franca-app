@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FatecFrancaApiService } from 'src/app/services/fatec-franca-api.service';
-import { NavController } from '@ionic/angular';
 import * as moment from 'moment';
 
 @Component({
@@ -9,7 +8,7 @@ import * as moment from 'moment';
   styleUrls: ['./home.page.scss']
 })
 export class HomePage implements OnInit {
-  constructor(private fatecFrancaApiService: FatecFrancaApiService, private nav: NavController) { }
+  constructor(private fatecFrancaApiService: FatecFrancaApiService) { }
 
   schedulesToday: any = {};
   schedules: any = [];
@@ -24,8 +23,8 @@ export class HomePage implements OnInit {
     const days = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
 
     const toDay = new Date().getDay();
-    this.schedulesToday = schedules.find(q => q.weekday === toDay);
-    this.schedules = schedules.map((x) => {
+    this.schedulesToday = schedules.find((q: any) => q.weekday === toDay);
+    this.schedules = schedules.map((x: any) => {
       x.isToday = x.weekday === toDay;
       x.day = days[x.weekday];
       return x;

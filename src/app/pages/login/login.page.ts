@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FatecFrancaApiService } from 'src/app/services/fatec-franca-api.service';
 import { NgForm } from '@angular/forms';
 import { NavController, AlertController } from '@ionic/angular';
@@ -16,6 +16,8 @@ export class LoginPage {
     // tslint:disable-next-line: align
     public alertController: AlertController) {
   }
+
+  version = '0.0.1';
 
   async login(form: NgForm) {
     try {
@@ -37,5 +39,9 @@ export class LoginPage {
       await alert.onDidDismiss();
       throw error;
     }
+  }
+
+  esqueceu() {
+    window.open('https://siga.cps.sp.gov.br/aluno/login_auxproblemas.aspx', '_blank');
   }
 }

@@ -22,7 +22,7 @@ export class EventosPage implements OnInit {
       'Outubro', 'Novembro', 'Dezembro'];
 
     this.academicCalendar = {
-      months: academicCalendar.months.map((q, i) => {
+      months: academicCalendar.months.map((q: any, i: any) => {
         q.name = meses[i];
         return q;
       })
