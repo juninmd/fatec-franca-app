@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FatecFrancaApiService } from 'src/app/services/fatec-franca-api.service';
 import * as moment from 'moment';
+import { AngularFireMessaging } from '@angular/fire/messaging';
 
 @Component({
   selector: 'app-home',
@@ -8,7 +9,7 @@ import * as moment from 'moment';
   styleUrls: ['./home.page.scss']
 })
 export class HomePage implements OnInit {
-  constructor(private fatecFrancaApiService: FatecFrancaApiService) { }
+  constructor(private afMessaging: AngularFireMessaging, private fatecFrancaApiService: FatecFrancaApiService) { }
 
   schedulesToday: any = {};
   schedules: any = [];
@@ -29,9 +30,23 @@ export class HomePage implements OnInit {
       x.day = days[x.weekday];
       return x;
     });
+  
+    this.requestPushNotificationsPermission();
   }
 
   handleTab(tab: number) {
     this.tab = tab;
+  }
+
+  requestPushNotificationsPermission() {
+    this.afMessaging.requestToken
+      .subscribe(
+        (token) => {
+          console.log('Permission granted! Save to the server!', token);
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
   }
 }

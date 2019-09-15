@@ -18,7 +18,7 @@ export class LoginPage implements OnInit {
     private menu: MenuController) {
   }
 
-  version = '0.0.2';
+  version = '0.0.5';
 
   ngOnInit() {
     this.menu.enable(false);
