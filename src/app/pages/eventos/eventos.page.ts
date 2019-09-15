@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FatecFrancaApiService } from 'src/app/services/fatec-franca-api.service';
-import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-eventos',
@@ -8,7 +7,7 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./eventos.page.scss']
 })
 export class EventosPage implements OnInit {
-  constructor(private fatecFrancaApiService: FatecFrancaApiService, private nav: NavController) { }
+  constructor(private fatecFrancaApiService: FatecFrancaApiService) { }
 
   academicCalendar: any = [];
 

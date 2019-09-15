@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 import { SessionService } from '../services/session.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,13 @@ import { SessionService } from '../services/session.service';
 })
 export class AppComponent {
 
-  constructor(private menu: MenuController, public sessionService: SessionService) {
+  constructor(private menu: MenuController, public sessionService: SessionService, private nav: NavController) {
+    
+  }
+
+  sair() {
+    this.nav.navigateRoot('login');
+    this.menu.close();
   }
 
   closeMenu() {

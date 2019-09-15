@@ -1,5 +1,5 @@
 <ion-app>
-  <ion-menu side="start" contentId="menu-content">
+  <ion-menu side="start" contentId="menu-content" type="overlay">
     <ion-header>
       <ion-toolbar>
 
@@ -26,7 +26,7 @@
       <ion-button (click)="closeMenu()" color="tertiary" expand="full" [routerLink]="['/util']">Utilidades
       </ion-button>
       <ion-button (click)="github()" color="tertiary" expand="full">Contribua</ion-button>
-      <ion-button (click)="closeMenu()" color="tertiary" expand="full" [routerLink]="['/login']">Sair</ion-button>
+      <ion-button (click)="sair()" color="tertiary" expand="full">Sair</ion-button>
     </ion-content>
   </ion-menu>
 
