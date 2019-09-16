@@ -18,10 +18,23 @@ export class LoginPage implements OnInit {
     private menu: MenuController) {
   }
 
-  version = '0.0.5';
+  version = '0.0.6';
+  saveLogin = localStorage.getItem('saveLogin') === 'true';
 
   ngOnInit() {
     this.menu.enable(false);
+
+    // Caso tenha marcado para salvar o login
+    if (localStorage.getItem('saveLogin') !== null &&
+      localStorage.getItem('session') !== null &&
+      localStorage.getItem('login') !== null) {
+      this.menu.enable(true);
+      this.nav.navigateRoot('/home');
+    }
+    else {
+      localStorage.removeItem('session');
+      localStorage.removeItem('login');
+    }
   }
 
   async login(form: NgForm) {
@@ -49,5 +62,13 @@ export class LoginPage implements OnInit {
 
   esqueceu() {
     window.open('https://siga.cps.sp.gov.br/aluno/login.aspx', '_blank');
+  }
+
+  lembrarLogin() {
+    if (!this.saveLogin) {
+      localStorage.setItem('saveLogin', 'true');
+    } else {
+      localStorage.removeItem('saveLogin');
+    }
   }
 }

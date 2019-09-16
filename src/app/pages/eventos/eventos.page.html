@@ -5,16 +5,34 @@
     </ion-buttons>
     <ion-title>Eventos</ion-title>
   </ion-toolbar>
+
+  <ion-toolbar color="dark">
+    <ion-tabs>
+      <ion-tab-bar color="dark" slot="bottom">
+        <ion-tab-button (click)="handleTab(1)">
+          <ion-icon name="home"></ion-icon>
+          <ion-label>Esse mês</ion-label>
+          <ion-badge>{{ currentCalendar?.month?.events?.length }}</ion-badge>
+        </ion-tab-button>
+
+        <ion-tab-button (click)="handleTab(2)">
+          <ion-icon name="calendar"></ion-icon>
+          <ion-label>Ano Inteiro</ion-label>
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-toolbar>
+
 </ion-header>
 
 <ion-content color="dark">
 
-  <div *ngFor="let month of academicCalendar.months; index as i">
+  <div *ngIf="tab === 1">
     <ion-item color="dark">
-      <ion-label>{{ month.name }}</ion-label>
+      <ion-label>{{ currentCalendar.name }}</ion-label>
     </ion-item>
 
-    <ion-card *ngFor="let event of month.events; index as i" color='tertiary'>
+    <ion-card *ngFor="let event of currentCalendar.month?.events; index as i" color='tertiary'>
       <ion-card-header>
         {{ event.name }}
       </ion-card-header>
@@ -26,7 +44,29 @@
           <ion-label>Data: {{ event.date | date: 'dd/MM/yyyy' }}</ion-label>
         </ion-button>
       </ion-item>
-
     </ion-card>
+  </div>
+
+  <div *ngIf="tab === 2">
+    <div *ngFor="let month of academicCalendar.months; index as i">
+      <ion-item color="dark">
+        <ion-label>{{ month.name }}</ion-label>
+      </ion-item>
+
+      <ion-card *ngFor="let event of month.events; index as i" color='tertiary'>
+        <ion-card-header>
+          {{ event.name }}
+        </ion-card-header>
+        <ion-card-content>
+          <p>Descrição: {{ event.reason }}</p>
+        </ion-card-content>
+        <ion-item>
+          <ion-button color="black">
+            <ion-label>Data: {{ event.date | date: 'dd/MM/yyyy' }}</ion-label>
+          </ion-button>
+        </ion-item>
+      </ion-card>
+
+    </div>
   </div>
 </ion-content>

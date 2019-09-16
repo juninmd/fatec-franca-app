@@ -1,40 +1,54 @@
 <ion-content color="dark">
-  <form #form="ngForm" (ngSubmit)="login(form)">
-    <ion-grid>
-      <ion-row justify-content-center>
-        <ion-col align-self-center size-md="12" size-lg="12" size-xs="12">
-          <ion-card color="light">
-            <ion-card-content>
+
+  <ion-grid>
+    <ion-row justify-content-center>
+      <ion-col align-self-center size-md="12" size-lg="12" size-xs="12">
+        <ion-card color="light">
+          <ion-card-content>
+            <form name="form" #form="ngForm" (ngSubmit)="login(form)">
+
               <div text-center>
                 <ion-img class="logo" src="assets/img/fatec.png"></ion-img>
-                <ion-title color="tertiary">Franca</ion-title>
+                <ion-label color="tertiary">Franca</ion-label>
               </div>
-              <div padding>
-                <ion-note>Informe suas credênciais do SIGA</ion-note>
+              <div>
+                <ion-label class="siga" size="small">Informe suas credênciais do SIGA</ion-label>
                 <ion-item>
-                  <ion-label position="floating">R.G.</ion-label>
+                  <ion-label size="small">R.G.</ion-label>
                   <ion-input name="login" type="text" placeholder="ex: 453664338SP" ngModel required></ion-input>
                 </ion-item>
                 <ion-item>
-                  <ion-label position="floating">Senha</ion-label>
+                  <ion-label size="small">Senha</ion-label>
                   <ion-input name="password" type="password" placeholder="ex: 123" ngModel required></ion-input>
                 </ion-item>
+
               </div>
               <div padding>
-                <ion-button color="tertiary" size="medium" type="submit" [disabled]="form.invalid" expand="block">Login
+                <ion-button form="form" color="tertiary" size="medium" type="submit" [disabled]="form.invalid"
+                  expand="block">Login
                 </ion-button>
                 <ion-button color="dark" size="small" (click)="esqueceu()" expand="block">Esqueceu sua senha?
                 </ion-button>
               </div>
-            </ion-card-content>
-          </ion-card>
-          <ion-item color="dark">
-            <ion-buttons slot="end">
-              <ion-badge color="tertiary" size="small">Versão: {{version}}</ion-badge>
-            </ion-buttons>
-          </ion-item>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </form>
+            </form>
+            <ion-item>
+              <ion-label size="small">Manter conectado</ion-label>
+              <ion-checkbox (click)="lembrarLogin()" [(ngModel)]="saveLogin" name="saveLogin"></ion-checkbox>
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+        <ion-item color="dark">
+          <ion-buttons slot="end">
+            <ion-badge color="tertiary" size="small">Versão: {{version}}</ion-badge>
+          </ion-buttons>
+        </ion-item>
+        <div text-center>
+          <ion-note class="note" size="small">Nenhuma informação pessoal será armazenada ou compartilhada por nossa
+            API.
+          </ion-note>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
 </ion-content>

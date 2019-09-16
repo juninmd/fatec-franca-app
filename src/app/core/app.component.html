@@ -10,23 +10,42 @@
           <ion-title>{{sessionService.getFirstName()}}</ion-title>
         </ion-item>
 
+
       </ion-toolbar>
     </ion-header>
     <ion-content id="menu-content" color="dark">
       <ion-button (click)="closeMenu()" color="tertiary" expand="full" [routerLink]="['/home']">
-        Home
+        <ion-icon name="clock" slot="start"></ion-icon>
+        Horários
       </ion-button>
-      <ion-button (click)="closeMenu()" color="tertiary" expand="full" [routerLink]="['/grade']">Grade</ion-button>
-      <ion-button (click)="closeMenu()" color="tertiary" expand="full" [routerLink]="['/avaliacoes']">Avaliações
+      <ion-button (click)="closeMenu()" color="tertiary" expand="full" [routerLink]="['/grade']">
+        <ion-icon name="bookmarks" slot="start"></ion-icon>
+        Grade
       </ion-button>
-      <ion-button (click)="closeMenu()" color="tertiary" expand="full" [routerLink]="['/em-curso']">Em Curso
+      <ion-button (click)="closeMenu()" color="tertiary" expand="full" [routerLink]="['/avaliacoes']">
+        <ion-icon name="clipboard" slot="start"></ion-icon>
+        Avaliações
       </ion-button>
-      <ion-button (click)="closeMenu()" color="tertiary" expand="full" [routerLink]="['/eventos']">Eventos
+      <ion-button (click)="closeMenu()" color="tertiary" expand="full" [routerLink]="['/em-curso']">
+        <ion-icon name="book" slot="start"></ion-icon>
+        Em Curso
       </ion-button>
-      <ion-button (click)="closeMenu()" color="tertiary" expand="full" [routerLink]="['/util']">Utilidades
+      <ion-button (click)="closeMenu()" color="tertiary" expand="full" [routerLink]="['/eventos']">
+        <ion-icon name="beer" slot="start"></ion-icon>
+        Eventos
       </ion-button>
-      <ion-button (click)="github()" color="tertiary" expand="full">Contribua</ion-button>
-      <ion-button (click)="sair()" color="tertiary" expand="full">Sair</ion-button>
+      <ion-button (click)="closeMenu()" color="tertiary" expand="full" [routerLink]="['/util']">
+        <ion-icon name="hammer" slot="start"></ion-icon>
+        Utilidades
+      </ion-button>
+      <ion-button (click)="github()" color="tertiary" expand="full">
+        <ion-icon name="logo-github" slot="start"></ion-icon>
+        Contribua
+      </ion-button>
+      <ion-button (click)="sair()" color="tertiary" expand="full">
+        <ion-icon name="close" slot="start"></ion-icon>
+        Sair
+      </ion-button>
     </ion-content>
   </ion-menu>
 

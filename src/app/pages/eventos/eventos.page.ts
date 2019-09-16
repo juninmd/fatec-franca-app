@@ -10,6 +10,8 @@ export class EventosPage implements OnInit {
   constructor(private fatecFrancaApiService: FatecFrancaApiService) { }
 
   academicCalendar: any = [];
+  currentCalendar: any = {};
+  tab = 1;
 
   async ngOnInit() {
     const {
@@ -20,11 +22,23 @@ export class EventosPage implements OnInit {
       'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro',
       'Outubro', 'Novembro', 'Dezembro'];
 
+
+    const myMonth = new Date().getMonth();
+    
+    this.currentCalendar = {
+      name: meses[myMonth],
+      month: academicCalendar.months[myMonth]
+    };
+
     this.academicCalendar = {
       months: academicCalendar.months.map((q: any, i: any) => {
         q.name = meses[i];
         return q;
       })
     };
+  }
+
+  handleTab(tab: number) {
+    this.tab = tab;
   }
 }

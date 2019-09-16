@@ -12,4 +12,8 @@ export class UtilsPage implements OnInit {
 
   async ngOnInit() {
   }
+
+  openLink(link) {
+    window.open(link, '_blank')
+  }
 }

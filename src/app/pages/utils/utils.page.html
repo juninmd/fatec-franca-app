@@ -47,9 +47,9 @@
       </ion-button>
     </ion-item>
     <ion-item>
-      <a class="button" href="https://site.fatecfranca.edu.br/" target="_blank">
+      <ion-button color="dark" (click)="openLink('https://site.fatecfranca.edu.br/')">
         Site Fatec Franca
-      </a>
+      </ion-button>
     </ion-item>
     <ion-item>
       <iframe
@@ -59,39 +59,35 @@
   </ion-card>
 
   <ion-card color="tertiary">
-    <a href="https://mail.office365.com/" target="_blank">
-      <ion-card-header>
+    <ion-card-header>
+      Links Úteis
+    </ion-card-header>
+    <ion-item>
+      <ion-button color="dark" (click)="openLink('https://mail.office365.com/')">
         E-mail Institucional
-      </ion-card-header>
-    </a>
-  </ion-card>
+      </ion-button>
+    </ion-item>
 
-  <ion-card color="tertiary">
-    <a href="https://onedrive.live.com/about/pt-br/" target="_blank">
-      <ion-card-header>
+    <ion-item>
+      <ion-button color="dark" (click)="openLink('https://onedrive.live.com/about/pt-br/')">
         One Drive
-      </ion-card-header>
-    </a>
-  </ion-card>
+      </ion-button>
+    </ion-item>
 
-  <ion-card color="tertiary">
-    <a href="https://aka.ms/devtoolsforteaching/" target="_blank">
-      <ion-card-header>
+    <ion-item>
+      <ion-button color="dark" (click)="openLink('https://aka.ms/devtoolsforteaching/')">
         Microsoft Store
-      </ion-card-header>
-    </a>
-  </ion-card>
+      </ion-button>
+    </ion-item>
 
-  <ion-card color="tertiary">
-    <a href="https://www.autodesk.com.br/education/free-educational-software#license/" target="_blank">
-      <ion-card-header>
+    <ion-item>
+      <ion-button color="dark"
+        (click)="openLink('https://www.autodesk.com.br/education/free-educational-software#license/')">
         AutoDesk Store
-      </ion-card-header>
-    </a>
-  </ion-card>
-
-  <ion-card color="tertiary">
+      </ion-button>
+    </ion-item>
 
   </ion-card>
+
 
 </ion-content>

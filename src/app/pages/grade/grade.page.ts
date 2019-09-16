@@ -15,7 +15,8 @@ export class GradePage implements OnInit {
     aprovado: 0,
     cursando: 0,
     reprovado: 0,
-    dispensado: 0
+    dispensado: 0,
+    naoCursando: 0
   };
 
   async ngOnInit() {
@@ -38,6 +39,18 @@ export class GradePage implements OnInit {
           this.status.cursando += 1;
         }
 
+        if (discipline.state === 'not-attended') {
+          this.status.naoCursando += 1;
+        }
+
+        if (discipline.state === 'not-attended') {
+          this.status.naoCursando += 1;
+        }
+
+        if (discipline.state === 'quited') {
+          this.status.reprovado += 1;
+        }
+
       }
 
     }
@@ -47,12 +60,14 @@ export class GradePage implements OnInit {
         d.color = d.state === 'approved' ?
           'success' : d.state === 'dismissed' ?
             'success' : d.state === 'attending' ?
-              'tertiary' : 'danger';
+              'tertiary' : d.state === 'not-attended' ?
+                'light' : 'danger';
 
         d.status = d.state === 'approved' ?
           'Aprovado' : d.state === 'dismissed' ?
             'Dispensado' : d.state === 'attending' ?
-              'Cursando' : 'Reprovado';
+              'Cursando' : d.state === 'not-attended' ?
+                'Não Cursando' : 'Reprovado';
         return d;
       });
       return x;

@@ -15,6 +15,7 @@ export class AppComponent {
   }
 
   sair() {
+    this.sessionService.logOff();
     this.nav.navigateRoot('login');
     this.menu.close();
   }

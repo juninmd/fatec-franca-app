@@ -8,28 +8,33 @@
 </ion-header>
 
 <ion-content color="dark">
-  <ion-card color="tertiary" *ngFor="let partialGrade of partialGrades; index as i">
-    <ion-card-header>
-      {{ partialGrade.discipline.name }}
-    </ion-card-header>
-    <ion-card-content>
+  <div color="light" *ngFor="let partialGrade of partialGrades; index as i">
 
-      <ion-list inset="true" *ngFor="let evaluation of partialGrade.evaluations; index as a">
-        <ion-item color="dark">
-          <ion-label>{{ evaluation.title }}</ion-label>
-        </ion-item>
-        <ion-item-divider *ngIf="evaluation.description">
-          <ion-label>Descrição: {{ evaluation.description }}</ion-label>
-        </ion-item-divider>
-        <ion-item-divider *ngIf="evaluation.weight">
-          <ion-label>Peso: {{ evaluation.weight }}</ion-label>
-        </ion-item-divider>
-        <ion-item-divider *ngFor="let grade of evaluation.grades">
-          <ion-label>Nota: {{ grade.score }}
-          </ion-label>
-        </ion-item-divider>
-      </ion-list>
+    <ion-item color="dark">
+      <p>{{ partialGrade.discipline.name }}</p>
+    </ion-item>
 
-    </ion-card-content>
-  </ion-card>
+    <ion-card *ngIf="partialGrade.evaluations.length === 0" color="tertiary">
+      <ion-card-header>
+        Não tem prova/trabalho
+      </ion-card-header>
+    </ion-card>
+
+    <ion-list inset="true" *ngFor="let evaluation of partialGrade.evaluations; index as a">
+      <ion-item color="tertiary">
+        <ion-label>{{ evaluation.title }}</ion-label>
+      </ion-item>
+      <ion-item-divider *ngIf="evaluation.description">
+        <ion-label color="dark">Descrição: {{ evaluation.description }}</ion-label>
+      </ion-item-divider>
+      <ion-item-divider *ngIf="evaluation.weight">
+        <ion-label color="dark">Peso: {{ evaluation.weight }}</ion-label>
+      </ion-item-divider>
+      <ion-item-divider *ngFor="let grade of evaluation.grades">
+        <ion-label color="dark">Nota: {{ grade.score }}
+        </ion-label>
+      </ion-item-divider>
+    </ion-list>
+
+  </div>
 </ion-content>
