@@ -27,7 +27,7 @@
     "@angular/router": "~8.1.2",
     "@angular/service-worker": "~8.1.2",
     "@ionic/angular": "^4.7.1",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "core-js": "^2.5.4",
     "express": "^4.17.1",
     "firebase": "^6.6.1",
